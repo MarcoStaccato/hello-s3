@@ -1,12 +1,10 @@
 pipeline {
   agent any 
   stages {
-    steps {
-      'echo "Hello World!"'
-      sh '''
-          echo "Multiline shell steps works too"
-          ls -lah
-      '''
+    stage('Deployment') {
+      withAWS(region:'us-east-1') {
+          s3Upload(bucket: 'udacity-marcostaccato-static', file:'index.html'
+      }
     }
   }
 }
